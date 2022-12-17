@@ -3,8 +3,8 @@ class PlacesController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     wrap_parameters format: []
     
-    # skip_before_action :authorize, only: :index
-    # skip_before_action :authorize, only: :show
+    skip_before_action :authorize, only: :index
+    skip_before_action :authorize, only: :show
   
     def index 
       render json: Place.all, status: :ok
