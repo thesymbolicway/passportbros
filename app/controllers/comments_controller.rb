@@ -3,10 +3,9 @@ class CommentsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     wrap_parameters format: []
 
-    skip_before_action :authorize, only: :specific_point
+    # skip_before_action :authorize, only: :specific_point
 
-    # Import the Comment model
-    from Comment import Comment
+
 
     def index 
         render json: Comment.all, status: :ok

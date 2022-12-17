@@ -39,5 +39,6 @@ class PlacesController < ApplicationController
       render json: { error: "Place not found" }, status: :not_found
     end
   
+    
   end
   
