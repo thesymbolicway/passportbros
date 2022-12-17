@@ -12,11 +12,11 @@
 
 ActiveRecord::Schema[7.0].define(version: 2022_12_05_193357) do
   create_table "comments", force: :cascade do |t|
-    t.string "body"
-    t.string "username"
-    t.integer "user_id"
-    t.integer "place_id"
-    t.string "parent_id"
+    t.string "body", null: false
+    t.string "username", null: false
+    t.integer "user_id", null: false
+    t.integer "place_id", null: false
+    t.integer "parent_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
