@@ -21,19 +21,27 @@ class CommentsController < ApplicationController
         render json: comment, status: :ok
     end
 
-    def create 
-        # If the parent_id param is present, this is a reply
-        if params[:parent_id]
-          # Find the parent comment and assign it to a variable
-          parent_comment = Comment.find(params[:parent_id])
-          # Create a new comment as a reply to the parent comment
-          comment = parent_comment.comments.create!(comment_params)
-        else
-          # If no parent_id is present, this is a base comment
-          comment = Comment.create!(comment_params)
-        end
-        render json: comment, status: :created
+    def create
+      # If the parent_id param is present, this is a reply
+      if params[:parent_id]
+        # Find the parent comment and assign it to a variable
+        parent_comment = Comment.find(params[:parent_id])
+        # Create a new comment as a reply to the parent comment
+        comment = parent_comment.comments.create!(comment_params)
+      else
+        # If no parent_id is present, this is a base comment
+        comment = Comment.create!(comment_params)
       end
+    
+      if comment.save
+        render json: comment, status: :created
+      else
+        # If the comment fails to save, render the errors in the response
+        render json: { errors: comment.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+    
+  
       
 
     def update 
@@ -52,7 +60,7 @@ class CommentsController < ApplicationController
     private 
 
     def comment_params 
-        params.permit(:body, :user_id, :place_id, :username, :parent_id)
+        params.permit(:body, :user_id, :place_id, :username, :parent_id, :createdAt)
     end
 
     def record_invalid (invalid)
