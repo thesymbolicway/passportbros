@@ -60,7 +60,7 @@ class CommentsController < ApplicationController
     private 
 
     def comment_params 
-        params.permit(:body, :user_id, :place_id, :username, :parent_id, :createdAt)
+        params.permit(:body, :user_id, :place_id, :username, :parent_id, :created_at)
     end
 
     def record_invalid (invalid)
