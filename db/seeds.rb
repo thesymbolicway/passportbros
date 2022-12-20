@@ -33,5 +33,11 @@ r2 = Review.create!(comment: 'How busy are they on a weekend?', rating: 4, user_
 r3 = Review.create!(comment: 'Will definitely come back!', rating: 3, user_id: u3.id, point_id: poi3.id)
 r4 = Review.create!(comment: 'Loved it!', rating: 5, user_id: u4.id, point_id: poi2.id)
 
+
+c1 = Comment.create!(body: 'First comment', user_id: u1.id, place_id: p2.id, parent_id: 1, username: u1.username)
+c2 = Comment.create!(body: 'Second comment', user_id: u2.id, place_id: p2.id, username: u2.username)
+c3 = Comment.create!(body: 'First comment, first child', user_id: u2.id, place_id: p2.id, parent_id: 1, username: u1.username)
+c4 = Comment.create!(body: 'Second comment, second child', user_id: u2.id, place_id: p2.id, parent_id:2, username: u2.username)
+
 puts 'Done seeding!'
 

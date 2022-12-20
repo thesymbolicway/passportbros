@@ -3,7 +3,7 @@ class ReviewsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
     wrap_parameters format: []
   
-    # skip_before_action :authorize, only: :specific_point
+    skip_before_action :authorize, only: :specific_point
   
    
     def index 
